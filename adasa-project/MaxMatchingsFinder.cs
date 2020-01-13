@@ -62,14 +62,13 @@ namespace MaximalMatchingsTask
             // matchingSearchHistory contains currentMatchings of every iteration of searching algorithm
             matchingSearchHistory = new List<int[]>();
             matchingSearchHistory.Add(currentMatchings);
-
-            bool[] firstPartVerticesVisited = new bool[cardinality];
-            bool[] secondPartVerticesVisited = new bool[cardinality];
-
+            // Expand current matchings to the maximum 
+            // adding one new matching using augmenting path
             while (firstPartVerticesTaken.Any(c => !c) && firstPartVerticesVisited.Any(c => !c))
             {
+                // Nested method that finds augmenting path or null if no path was found
                 int[] augmentingPath = FindAugmentingPath();
-                // If augmenting path hasn't been found
+                // If augmenting path wasn't found
                 if (augmentingPath == null)
                     return currentMatchings;
 
@@ -94,6 +93,10 @@ namespace MaximalMatchingsTask
             // Method that finds augmenting path for current matchings
             int[] FindAugmentingPath()
             {
+                // Create arrays for visited vertices
+                bool[] firstPartVerticesVisited = new bool[cardinality];
+                bool[] secondPartVerticesVisited = new bool[cardinality];
+                // Create a stack for current path
                 Stack<int> path = new Stack<int>();
                 int current = -1; // Index of current first part vertex
                 while (true)
