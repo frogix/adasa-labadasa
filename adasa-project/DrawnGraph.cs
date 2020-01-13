@@ -27,7 +27,7 @@ namespace adasa_project
         private Pen circlePen;
         private Pen linePen;
 
-
+        private int stageNumber;
 
         private int marginTop = 20;
         private int marginBottom = 20;
@@ -109,6 +109,23 @@ namespace adasa_project
         public void CL(string msg)
         {
             MessageBox.Show(msg);
+        }
+
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            stageNumber++;
+            UpdateStage();
+        }
+
+        private void UpdateStage()
+        {
+
+        }
+
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            stageNumber--;
+            UpdateStage();
         }
     }
 }
