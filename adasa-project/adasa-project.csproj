@@ -51,6 +51,12 @@
     <Compile Include="DataInputView.Designer.cs">
       <DependentUpon>DataInputView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawnGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawnGraph.Designer.cs">
+      <DependentUpon>DrawnGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaxMatchingsFinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
