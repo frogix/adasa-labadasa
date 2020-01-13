@@ -44,20 +44,22 @@ namespace MaximalMatchingsTask
 
             bool[] firstPartVerticesTaken = new bool[cardinality];
             bool[] secondPartVerticesTaken = new bool[cardinality];
-            for (int i = 0; i < cardinality; ++i)
-            {
 
-                bool connected = false;
-                for (int j = 0; j < cardinality && !connected; ++j)
-                {
-                    if (!connections[i, j] || secondPartVerticesTaken[j]) continue;
+            //for (int i = 0; i < cardinality; ++i)
+            //{
+            //
+            //    bool connected = false;
+            //   for (int j = 0; j < cardinality && !connected; ++j)
+            //    {
+            //        if (!connections[i, j] || secondPartVerticesTaken[j]) continue;
+            //
+            //        currentMatchings[j] = i;
+            //        firstPartVerticesTaken[i] = true;
+            //        secondPartVerticesTaken[j] = true;
+            //        connected = true;
+            //    }
+            //}
 
-                    currentMatchings[j] = i;
-                    firstPartVerticesTaken[i] = true;
-                    secondPartVerticesTaken[j] = true;
-                    connected = true;
-                }
-            }
 
             // matchingSearchHistory contains currentMatchings of every iteration of searching algorithm
             matchingSearchHistory = new List<int[]>();
