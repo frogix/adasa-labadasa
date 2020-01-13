@@ -47,10 +47,12 @@ namespace adasa_project
             int topYStart = marginTop;
             int bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
 
-            for (int i = 0; i < graphData.Length - 1; i++)
+            for (int i = 0; i < graphData.Length; i++)
             {
-                int firstPartIndex = graphData[i + 1];
+                int firstPartIndex = graphData[i];
 
+                if (firstPartIndex == -1) continue;
+                
                 int endX = marginLeft + firstPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
                 int endY = topYStart + circleRadius;
                 int startX = marginLeft + i * (circleHorizontalGap + circleRadius * 2) + circleRadius;
@@ -91,7 +93,7 @@ namespace adasa_project
         {
             bmp = new Bitmap(graphPB.Width, graphPB.Height);
 
-            circlesCount = graphData.Length - 1;
+            circlesCount = graphData.Length;
 
             int minWidth = marginLeft + circlesCount * (circleRadius * 2 + circleMinHorizontalGap) - circleMinHorizontalGap + marginRight;
             int minHeight = marginTop + circleRadius * 2 * 2 + circleMinVerticalGap + marginBottom;

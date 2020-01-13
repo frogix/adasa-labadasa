@@ -81,6 +81,8 @@ namespace adasa_project
             }
             var sampleList = new List<int[]>();
             int[] answer = MaximalMatchingsTask.MaxMatchingsFinder.GetMaxMathings(numberOfNodes, outputDependecies, out sampleList);
+            var dg = new DrawnGraph(answer);
+            dg.Show();
             foreach(int a in answer)
             {
                 Console.WriteLine(a);
