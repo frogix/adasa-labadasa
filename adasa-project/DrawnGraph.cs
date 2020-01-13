@@ -13,16 +13,20 @@ namespace adasa_project
     public partial class DrawnGraph : Form
     {
         public Bitmap bmp;
-        public int[] graphData = { 0, 4, 1, 3, 2, 5 };
+        public int[] graphData = { 0, 3, 0, 2, 1, 4 }; // Test data
 
         private int circlesCount;
         private int circleRadius = 15;
-        private Color circleColor = Color.Red;
         private int circleHorizontalGap = 40;
         private int circleMinHorizontalGap = 10;
         private int circleMinVerticalGap = 50;
 
+        private Color circleColor = Color.Red;
+        private Color lineColor = Color.Black;
+
         private Pen circlePen;
+        private Pen linePen;
+
 
 
         private int marginTop = 20;
@@ -30,8 +34,9 @@ namespace adasa_project
         private int marginLeft = 20;
         private int marginRight = 20;
 
-        public DrawnGraph()
+        public DrawnGraph(int[] graphConnections)
         {
+            graphData = graphConnections;
             InitializeComponent();
 
             Setup();
@@ -41,11 +46,25 @@ namespace adasa_project
 
             int topYStart = marginTop;
             int bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
+
+            for (int i = 0; i < graphData.Length - 1; i++)
+            {
+                int firstPartIndex = graphData[i + 1];
+
+                int endX = marginLeft + firstPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
+                int endY = topYStart + circleRadius;
+                int startX = marginLeft + i * (circleHorizontalGap + circleRadius * 2) + circleRadius;
+                int startY = bottomYStart + circleRadius;
+
+                g.DrawLine(linePen, startX, startY, endX, endY);
+            }
+
             for (int i = 0; i < circlesCount; i++)
             {
-                DrawCircle(marginLeft + (i) * circleHorizontalGap, topYStart, circleRadius, circlePen, g, true);
-                DrawCircle(marginLeft + (i) * circleHorizontalGap, bottomYStart, circleRadius, circlePen, g, true);
+                DrawCircle(marginLeft + i * (circleHorizontalGap + circleRadius * 2), topYStart, circleRadius, circlePen, g, true);
+                DrawCircle(marginLeft + i * (circleHorizontalGap + circleRadius * 2), bottomYStart, circleRadius, circlePen, g, true);
             }
+
 
 
             graphPB.Image = bmp;
@@ -56,8 +75,7 @@ namespace adasa_project
         private void DrawCircle(int leftX, int leftY, int radius, Pen pen, Graphics g, bool fill = false)
         {
             int diameter = radius * 2;
-            // int leftX = xCenter - radius;
-            // int leftY = yCenter - radius;
+
             if (fill)
             {
                 g.FillEllipse(pen.Brush, leftX, leftY, diameter, diameter);
@@ -79,7 +97,10 @@ namespace adasa_project
             int minHeight = marginTop + circleRadius * 2 * 2 + circleMinVerticalGap + marginBottom;
             this.MinimumSize = new Size(minWidth, minHeight);
 
+            circleHorizontalGap = (graphPB.Width - circlesCount * circleRadius * 2 - marginLeft - marginRight) / (circlesCount - 1);
+
             circlePen = new Pen(circleColor, 4);
+            linePen = new Pen(lineColor, 4);
             // TODO: set dynamic values for sizes and gaps
         }
 
