@@ -64,7 +64,7 @@ namespace MaximalMatchingsTask
             matchingSearchHistory.Add(currentMatchings);
             // Expand current matchings to the maximum 
             // adding one new matching using augmenting path
-            while (firstPartVerticesTaken.Any(c => !c) && firstPartVerticesVisited.Any(c => !c))
+            while (firstPartVerticesTaken.Any(c => !c))
             {
                 // Nested method that finds augmenting path or null if no path was found
                 int[] augmentingPath = FindAugmentingPath();
