@@ -18,12 +18,15 @@ namespace MaximalMatchingsTask
         /// Adjacency matrix for the given bipartite graph where elements are boolean values (false - not connected, true - connected).
         /// Lines represent vertices of the first part, and columns represent vertices of the second part
         /// </param>
+        /// <param name="matchingSearchHistory">
+        /// Out parameter that contains current state of maximal mathcing of every iteration of searching algorithm
+        /// </param>
         /// <returns>
         /// Array of ints where
         ///     index (int) represents vertex of the second part and
         ///     value (int) is index of matching vertex of the first part
         /// </returns>
-        public static int[] GetMaxMathings(int cardinality, bool[,] connections)
+        public static int[] GetMaxMathings(int cardinality, bool[,] connections, out List<int[]> matchingSearchHistory)
         {
             if (cardinality <= 0)
                 throw new ArgumentOutOfRangeException(nameof(cardinality) + " should be a positive integer");
@@ -56,6 +59,10 @@ namespace MaximalMatchingsTask
                 }
             }
 
+            // matchingSearchHistory contains currentMatchings of every iteration of searching algorithm
+            matchingSearchHistory = new List<int[]>();
+            matchingSearchHistory.Add(currentMatchings);
+
             bool[] firstPartVerticesVisited = new bool[cardinality];
             bool[] secondPartVerticesVisited = new bool[cardinality];
 
@@ -77,6 +84,7 @@ namespace MaximalMatchingsTask
                 {
                     currentMatchings[augmentingPath[i + 1]] = augmentingPath[i];
                 }
+                matchingSearchHistory.Add(currentMatchings);
             }
 
             return currentMatchings;
