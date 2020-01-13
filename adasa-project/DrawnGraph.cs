@@ -35,44 +35,54 @@ namespace adasa_project
         private int marginLeft = 20;
         private int marginRight = 20;
 
+        private int topYStart;
+        private int bottomYStart;
+
         public DrawnGraph(bool[,] inputData, List<int[]> graphConnections)
         {
             currentGraphData = graphConnections[graphConnections.Count - 1];
             graphHistory = graphConnections;
             InitializeComponent();
-            Setup();
 
+            Setup();
+            Draw();
+        }
+
+        private void Draw()
+        {
             var g = Graphics.FromImage(bmp);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int topYStart = marginTop;
-            int bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
-
-            for (int i = 0; i < currentGraphData.Length; i++)
+            for (int secondPartIndex = 0; secondPartIndex < currentGraphData.Length; secondPartIndex++)
             {
-                int firstPartIndex = currentGraphData[i];
-
-                if (firstPartIndex == -1) continue;
-                
-                int endX = marginLeft + firstPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
-                int endY = topYStart + circleRadius;
-                int startX = marginLeft + i * (circleHorizontalGap + circleRadius * 2) + circleRadius;
-                int startY = bottomYStart + circleRadius;
-
-                g.DrawLine(linePen, startX, startY, endX, endY);
+                int firstPartIndex = currentGraphData[secondPartIndex];
+                DrawConnection(linePen, firstPartIndex, secondPartIndex, g);
             }
 
+            DrawCircles(g);
+            graphPB.Image = bmp;
+            graphPB.Invalidate();
+        }
+
+        private void DrawCircles(Graphics g)
+        {
             for (int i = 0; i < circlesCount; i++)
             {
                 DrawCircle(marginLeft + i * (circleHorizontalGap + circleRadius * 2), topYStart, circleRadius, circlePen, g, true);
                 DrawCircle(marginLeft + i * (circleHorizontalGap + circleRadius * 2), bottomYStart, circleRadius, circlePen, g, true);
             }
+        }
 
+        private void DrawConnection(Pen pen, int firstPartIndex, int secondPartIndex, Graphics g)
+        {
+            if (firstPartIndex == -1 || secondPartIndex == -1) return;
 
+            int endX = marginLeft + firstPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
+            int endY = topYStart + circleRadius;
+            int startX = marginLeft + secondPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
+            int startY = bottomYStart + circleRadius;
 
-            graphPB.Image = bmp;
-            graphPB.Invalidate();
-
+            g.DrawLine(linePen, startX, startY, endX, endY);
         }
 
         private void DrawCircle(int leftX, int leftY, int radius, Pen pen, Graphics g, bool fill = false)
@@ -109,7 +119,9 @@ namespace adasa_project
 
             circlePen = new Pen(circleColor, 4);
             linePen = new Pen(lineColor, 4);
-            // TODO: set dynamic values for sizes and gaps
+
+            topYStart = marginTop;
+            bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
         }
 
         public void CL(string msg)
