@@ -79,15 +79,10 @@ namespace adasa_project
                 int rightNumber = int.Parse(dependency.Item2[1].ToString());
                 outputDependecies[leftNumber - 1, rightNumber - 1] = true;
             }
-            var sampleList = new List<int[]>();
-            int[] answer = MaximalMatchingsTask.MaxMatchingsFinder.GetMaxMathings(numberOfNodes, outputDependecies, out sampleList);
-            var dg = new DrawnGraph(answer);
+            var answer = new List<int[]>();
+            MaximalMatchingsTask.MaxMatchingsFinder.GetMaxMathings(numberOfNodes, outputDependecies, out answer);
+            var dg = new DrawnGraph(outputDependecies, answer);
             dg.Show();
-            foreach(int a in answer)
-            {
-                Console.WriteLine(a);
-            }
-
         }
     }
 }

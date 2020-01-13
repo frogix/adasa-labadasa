@@ -13,7 +13,8 @@ namespace adasa_project
     public partial class DrawnGraph : Form
     {
         public Bitmap bmp;
-        public int[] graphData = { 0, 3, 0, 2, 1, 4 }; // Test data
+        public int[] currentGraphData = { 0, 3, 0, 2, 1, 4 }; // Test data
+        private List<int[]> graphHistory;
 
         private int circlesCount;
         private int circleRadius = 15;
@@ -34,11 +35,11 @@ namespace adasa_project
         private int marginLeft = 20;
         private int marginRight = 20;
 
-        public DrawnGraph(int[] graphConnections)
+        public DrawnGraph(bool[,] inputData, List<int[]> graphConnections)
         {
-            graphData = graphConnections;
+            currentGraphData = graphConnections[graphConnections.Count - 1];
+            graphHistory = graphConnections;
             InitializeComponent();
-
             Setup();
 
             var g = Graphics.FromImage(bmp);
@@ -47,9 +48,9 @@ namespace adasa_project
             int topYStart = marginTop;
             int bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
 
-            for (int i = 0; i < graphData.Length; i++)
+            for (int i = 0; i < currentGraphData.Length; i++)
             {
-                int firstPartIndex = graphData[i];
+                int firstPartIndex = currentGraphData[i];
 
                 if (firstPartIndex == -1) continue;
                 
@@ -88,12 +89,17 @@ namespace adasa_project
             }
         }
 
+        private void DrawInputData()
+        {
+
+        }
+
         // Sets initial params values (like size of the circle, etc.)
         public void Setup()
         {
             bmp = new Bitmap(graphPB.Width, graphPB.Height);
 
-            circlesCount = graphData.Length;
+            circlesCount = currentGraphData.Length;
 
             int minWidth = marginLeft + circlesCount * (circleRadius * 2 + circleMinHorizontalGap) - circleMinHorizontalGap + marginRight;
             int minHeight = marginTop + circleRadius * 2 * 2 + circleMinVerticalGap + marginBottom;
@@ -113,18 +119,22 @@ namespace adasa_project
 
         private void buttonRight_Click(object sender, EventArgs e)
         {
+            buttonLeft.Enabled = true;
             stageNumber++;
+            if (stageNumber == graphHistory.Count) buttonRight.Enabled = false;
             UpdateStage();
         }
 
         private void UpdateStage()
         {
-
+            currentStageLabel.Text = $"{stageNumber}/{graphHistory.Count}";
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
         {
+            buttonRight.Enabled = true;
             stageNumber--;
+            if (stageNumber == 1) buttonLeft.Enabled = false;
             UpdateStage();
         }
     }
