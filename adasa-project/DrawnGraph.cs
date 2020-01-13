@@ -23,8 +23,8 @@ namespace adasa_project
         private int circleMinHorizontalGap = 10;
         private int circleMinVerticalGap = 50;
 
-        private Color circleColor = Color.Red;
-        private Color lineColor = Color.Green;
+        private Color circleColor = Color.Chocolate;
+        private Color lineColor = Color.Red;
 
         private Pen circlePen;
         private Pen inputDataLinePen;
@@ -138,7 +138,7 @@ namespace adasa_project
 
             circlePen = new Pen(circleColor, 4);
             inputDataLinePen = new Pen(Color.Black, 4);
-            linePen = new Pen(lineColor, 4);
+            linePen = new Pen(lineColor, 5);
 
             topYStart = marginTop;
             bottomYStart = graphPB.Height - marginBottom - 2 * circleRadius;
