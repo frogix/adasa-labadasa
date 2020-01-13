@@ -46,10 +46,10 @@ namespace adasa_project
             InitializeComponent();
             Setup();
             Draw();
+            buttonRight.Enabled = false;
             if (graphHistory.Count == 1)
             {
                 buttonLeft.Enabled = false;
-                buttonRight.Enabled = false;
             }
             UpdateStage();
         }
@@ -58,6 +58,7 @@ namespace adasa_project
         {
             
             var g = Graphics.FromImage(bmp);
+            g.Clear(Color.White);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             for (int secondPartIndex = 0; secondPartIndex < currentGraphData.Length; secondPartIndex++)
@@ -148,6 +149,12 @@ namespace adasa_project
         {
             currentStageLabel.Text = $"{stageNumber}/{graphHistory.Count}";
             currentGraphData = graphHistory[stageNumber - 1];
+            foreach (var data in currentGraphData)
+            {
+                Console.Write(data + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine(currentGraphData.Length);
             Draw();
         }
 

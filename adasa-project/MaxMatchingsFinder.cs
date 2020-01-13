@@ -63,7 +63,7 @@ namespace MaximalMatchingsTask
 
             // matchingSearchHistory contains currentMatchings of every iteration of searching algorithm
             matchingSearchHistory = new List<int[]>();
-            matchingSearchHistory.Add(currentMatchings);
+            matchingSearchHistory.Add((int[])currentMatchings.Clone());
             // Expand current matchings to the maximum 
             // adding one new matching using augmenting path
             while (firstPartVerticesTaken.Any(c => !c))
@@ -85,7 +85,7 @@ namespace MaximalMatchingsTask
                 {
                     currentMatchings[augmentingPath[i + 1]] = augmentingPath[i];
                 }
-                matchingSearchHistory.Add(currentMatchings);
+                matchingSearchHistory.Add((int[])currentMatchings.Clone());
             }
 
             return currentMatchings;
