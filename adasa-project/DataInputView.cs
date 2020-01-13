@@ -34,7 +34,7 @@ namespace adasa_project
         {
             if (RightComboBox.SelectedItem == null || LeftComboBox.SelectedItem == null)
             {
-                MessageBox.Show("One or more jobs were not selected in the checkboxes. Try selecting both!");
+                MessageBox.Show("One or more nodes were not selected in the checkboxes. Try selecting both!");
                 return;
             }
             Tuple<string, string> pairToInput = new Tuple<string, string>(LeftComboBox.SelectedItem.ToString(), RightComboBox.SelectedItem.ToString());
@@ -71,21 +71,19 @@ namespace adasa_project
 
         private void ComputeButton_Click(object sender, EventArgs e)
         {
-            bool[,] outputDependecies = new bool[(int)numericUpDown1.Value, (int)numericUpDown1.Value];
+            int numberOfNodes = (int)numericUpDown1.Value;
+            bool[,] outputDependecies = new bool[numberOfNodes, numberOfNodes];
             foreach (Tuple<string, string> dependency in dependencies)
             {
                 int leftNumber = int.Parse(dependency.Item1[1].ToString());
                 int rightNumber = int.Parse(dependency.Item2[1].ToString());
                 outputDependecies[leftNumber - 1, rightNumber - 1] = true;
             }
-
-            for (int i = 0; i < outputDependecies.GetLength(0); i++)
+            var sampleList = new List<int[]>();
+            int[] answer = MaximalMatchingsTask.MaxMatchingsFinder.GetMaxMathings(numberOfNodes, outputDependecies, out sampleList);
+            foreach(int a in answer)
             {
-                for (int j = 0; j < outputDependecies.GetLength(0); j++)
-                {
-                    Console.Write(outputDependecies[i, j] + " ");
-                }
-                Console.WriteLine();
+                Console.WriteLine(a);
             }
 
         }
