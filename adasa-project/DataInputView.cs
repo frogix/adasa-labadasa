@@ -20,9 +20,12 @@ namespace adasa_project
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
+            dependencies.Clear();
+            UpdateDependenciesList();
             int numberOfNodes = (int)numericUpDown1.Value;
             RightComboBox.Items.Clear();
             LeftComboBox.Items.Clear();
+            
             for (int i = 0; i < numberOfNodes; i++)
             {
                 LeftComboBox.Items.Add("V" + (i + 1).ToString());
