@@ -81,6 +81,7 @@ namespace adasa_project
             }
             var answer = new List<int[]>();
             MaximalMatchingsTask.MaxMatchingsFinder.GetMaxMathings(numberOfNodes, outputDependecies, out answer);
+            Console.WriteLine(answer.Count);
             var dg = new DrawnGraph(outputDependecies, answer);
             dg.Show();
         }

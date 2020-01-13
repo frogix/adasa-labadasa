@@ -42,14 +42,21 @@ namespace adasa_project
         {
             currentGraphData = graphConnections[graphConnections.Count - 1];
             graphHistory = graphConnections;
+            stageNumber = graphHistory.Count;
             InitializeComponent();
-
             Setup();
             Draw();
+            if (graphHistory.Count == 1)
+            {
+                buttonLeft.Enabled = false;
+                buttonRight.Enabled = false;
+            }
+            UpdateStage();
         }
 
         private void Draw()
         {
+            
             var g = Graphics.FromImage(bmp);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
@@ -140,6 +147,8 @@ namespace adasa_project
         private void UpdateStage()
         {
             currentStageLabel.Text = $"{stageNumber}/{graphHistory.Count}";
+            currentGraphData = graphHistory[stageNumber - 1];
+            Draw();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
