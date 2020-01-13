@@ -13,6 +13,7 @@ namespace adasa_project
     public partial class DrawnGraph : Form
     {
         public Bitmap bmp;
+        public bool[,] inputData;
         public int[] currentGraphData = { 0, 3, 0, 2, 1, 4 }; // Test data
         private List<int[]> graphHistory;
 
@@ -23,9 +24,10 @@ namespace adasa_project
         private int circleMinVerticalGap = 50;
 
         private Color circleColor = Color.Red;
-        private Color lineColor = Color.Black;
+        private Color lineColor = Color.Green;
 
         private Pen circlePen;
+        private Pen inputDataLinePen;
         private Pen linePen;
 
         private int stageNumber;
@@ -38,8 +40,9 @@ namespace adasa_project
         private int topYStart;
         private int bottomYStart;
 
-        public DrawnGraph(bool[,] inputData, List<int[]> graphConnections)
+        public DrawnGraph(bool[,] inputDataConnections, List<int[]> graphConnections)
         {
+            inputData = inputDataConnections;
             currentGraphData = graphConnections[graphConnections.Count - 1];
             graphHistory = graphConnections;
             stageNumber = graphHistory.Count;
@@ -60,6 +63,8 @@ namespace adasa_project
             var g = Graphics.FromImage(bmp);
             g.Clear(Color.White);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            DrawInputData(inputData, g);
 
             for (int secondPartIndex = 0; secondPartIndex < currentGraphData.Length; secondPartIndex++)
             {
@@ -90,7 +95,7 @@ namespace adasa_project
             int startX = marginLeft + secondPartIndex * (circleHorizontalGap + circleRadius * 2) + circleRadius;
             int startY = bottomYStart + circleRadius;
 
-            g.DrawLine(linePen, startX, startY, endX, endY);
+            g.DrawLine(pen, startX, startY, endX, endY);
         }
 
         private void DrawCircle(int leftX, int leftY, int radius, Pen pen, Graphics g, bool fill = false)
@@ -107,9 +112,15 @@ namespace adasa_project
             }
         }
 
-        private void DrawInputData()
+        private void DrawInputData(bool[,] inputData, Graphics g)
         {
-
+            for (int i = 0; i < inputData.GetLength(0); i++)
+            {
+                for (int j = 0; j < inputData.GetLength(1); j++)
+                {
+                    if (inputData[i, j]) DrawConnection(inputDataLinePen, i, j, g);
+                }
+            }
         }
 
         // Sets initial params values (like size of the circle, etc.)
@@ -126,6 +137,7 @@ namespace adasa_project
             circleHorizontalGap = (graphPB.Width - circlesCount * circleRadius * 2 - marginLeft - marginRight) / (circlesCount - 1);
 
             circlePen = new Pen(circleColor, 4);
+            inputDataLinePen = new Pen(Color.Black, 4);
             linePen = new Pen(lineColor, 4);
 
             topYStart = marginTop;
