@@ -44,20 +44,37 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(287, 128);
+            this.numericUpDown1.Location = new System.Drawing.Point(144, 67);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.ReadOnly = true;
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 50);
+            this.numericUpDown1.Size = new System.Drawing.Size(60, 29);
             this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(170, 66);
+            this.label1.Location = new System.Drawing.Point(85, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 42);
+            this.label1.Size = new System.Drawing.Size(183, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "Количество вершин";
             // 
@@ -65,27 +82,30 @@
             // 
             this.LeftComboBox.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LeftComboBox.FormattingEnabled = true;
-            this.LeftComboBox.Location = new System.Drawing.Point(115, 270);
+            this.LeftComboBox.Location = new System.Drawing.Point(58, 140);
+            this.LeftComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LeftComboBox.Name = "LeftComboBox";
-            this.LeftComboBox.Size = new System.Drawing.Size(121, 50);
+            this.LeftComboBox.Size = new System.Drawing.Size(62, 29);
             this.LeftComboBox.TabIndex = 2;
             // 
             // RightComboBox
             // 
             this.RightComboBox.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RightComboBox.FormattingEnabled = true;
-            this.RightComboBox.Location = new System.Drawing.Point(440, 270);
+            this.RightComboBox.Location = new System.Drawing.Point(220, 140);
+            this.RightComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RightComboBox.Name = "RightComboBox";
-            this.RightComboBox.Size = new System.Drawing.Size(121, 50);
+            this.RightComboBox.Size = new System.Drawing.Size(62, 29);
             this.RightComboBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(316, 273);
+            this.label2.Location = new System.Drawing.Point(158, 142);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 42);
+            this.label2.Size = new System.Drawing.Size(32, 22);
             this.label2.TabIndex = 4;
             this.label2.Text = "=>";
             // 
@@ -93,18 +113,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(206, 215);
+            this.label3.Location = new System.Drawing.Point(103, 112);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(268, 42);
+            this.label3.Size = new System.Drawing.Size(139, 22);
             this.label3.TabIndex = 5;
             this.label3.Text = "Введите связь";
             // 
             // addConnectionButton
             // 
             this.addConnectionButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addConnectionButton.Location = new System.Drawing.Point(223, 360);
+            this.addConnectionButton.Location = new System.Drawing.Point(112, 187);
+            this.addConnectionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addConnectionButton.Name = "addConnectionButton";
-            this.addConnectionButton.Size = new System.Drawing.Size(237, 59);
+            this.addConnectionButton.Size = new System.Drawing.Size(118, 31);
             this.addConnectionButton.TabIndex = 6;
             this.addConnectionButton.Text = "Добавить!";
             this.addConnectionButton.UseVisualStyleBackColor = true;
@@ -114,18 +136,20 @@
             // 
             this.dependenciesList.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dependenciesList.FormattingEnabled = true;
-            this.dependenciesList.ItemHeight = 42;
-            this.dependenciesList.Location = new System.Drawing.Point(94, 454);
+            this.dependenciesList.ItemHeight = 21;
+            this.dependenciesList.Location = new System.Drawing.Point(47, 236);
+            this.dependenciesList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dependenciesList.Name = "dependenciesList";
-            this.dependenciesList.Size = new System.Drawing.Size(366, 256);
+            this.dependenciesList.Size = new System.Drawing.Size(185, 130);
             this.dependenciesList.TabIndex = 7;
             // 
             // ComputeButton
             // 
             this.ComputeButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComputeButton.Location = new System.Drawing.Point(260, 750);
+            this.ComputeButton.Location = new System.Drawing.Point(107, 388);
+            this.ComputeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ComputeButton.Name = "ComputeButton";
-            this.ComputeButton.Size = new System.Drawing.Size(287, 72);
+            this.ComputeButton.Size = new System.Drawing.Size(144, 37);
             this.ComputeButton.TabIndex = 8;
             this.ComputeButton.Text = "Найти!";
             this.ComputeButton.UseVisualStyleBackColor = true;
@@ -134,9 +158,10 @@
             // DeleteConnectionButton
             // 
             this.DeleteConnectionButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteConnectionButton.Location = new System.Drawing.Point(486, 518);
+            this.DeleteConnectionButton.Location = new System.Drawing.Point(243, 269);
+            this.DeleteConnectionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DeleteConnectionButton.Name = "DeleteConnectionButton";
-            this.DeleteConnectionButton.Size = new System.Drawing.Size(237, 113);
+            this.DeleteConnectionButton.Size = new System.Drawing.Size(118, 59);
             this.DeleteConnectionButton.TabIndex = 9;
             this.DeleteConnectionButton.Text = "Удалить связь!";
             this.DeleteConnectionButton.UseVisualStyleBackColor = true;
@@ -144,9 +169,9 @@
             // 
             // DataInputView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 882);
+            this.ClientSize = new System.Drawing.Size(370, 459);
             this.Controls.Add(this.DeleteConnectionButton);
             this.Controls.Add(this.ComputeButton);
             this.Controls.Add(this.dependenciesList);
@@ -157,6 +182,7 @@
             this.Controls.Add(this.LeftComboBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DataInputView";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
