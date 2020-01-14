@@ -16,6 +16,7 @@ namespace adasa_project
         public DataInputView()
         {
             InitializeComponent();
+            numericUpDown1_ValueChanged(this, new EventArgs());
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
